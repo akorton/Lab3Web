@@ -15,7 +15,7 @@ $(document).ready(()=>{
    let y = 0;
    let r = 2;
    const inputX = $(".select-x input").first();
-   const inputY = $("#select-y");
+   const inputY = $(".select-y").first();
    const inputR = $(".select-r input").first();
    let points = [];
 
@@ -34,6 +34,19 @@ $(document).ready(()=>{
       }
       drawPoints();
    });
+
+   inputY.on("input change", (e)=>{
+      const cur = +e.target.value;
+      if (e.target.value === "-"){
+
+      }
+      else if (isNaN(cur) || cur < -3 || cur > 3){
+         inputY[0].value = y;
+      } else{
+         y = cur;
+      }
+      drawPoints();
+   })
 
    let setUp = ()=>{
       ctx.moveTo(origin.x - steps.x * maxCoord, origin.y);
