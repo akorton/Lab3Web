@@ -24,3 +24,9 @@ form{
     justify-content: center;
     gap: 30px;
 }
+
+table{
+    overflow-y:scroll;
+    height:500px;
+    display:block;
+}

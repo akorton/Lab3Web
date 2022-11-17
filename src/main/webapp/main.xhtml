@@ -17,6 +17,22 @@
     </div>
     <div id="content">
         <canvas id="canvas" width="500px" height="500px" />
+        <table align="center" cellpadding="5" cellspacing="10" border="2">
+            <tr>
+                <th>X</th>
+                <th>Y</th>
+                <th>R</th>
+                <th>Result</th>
+            </tr>
+            <ui:repeat var="entity" value="#{tableBean.table}">
+                <tr>
+                    <td>#{entity.x}</td>
+                    <td>#{entity.y}</td>
+                    <td>#{entity.r}</td>
+                    <td>#{entity.result}</td>
+                </tr>
+            </ui:repeat>
+        </table>
     </div>
     <h:form>
         <div id="selection">

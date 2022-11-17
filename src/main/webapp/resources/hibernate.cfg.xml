@@ -1,0 +1,27 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE hibernate-configuration SYSTEM
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <property name="hibernate.dialect">
+            org.hibernate.dialect.PostgreSQLDialect
+        </property>
+        <property name="hibernate.connection.driver_class">
+            org.postgresql.Driver
+        </property>
+        <property name="show_sql">true</property>
+        <property name="hibernate.connection.url">
+            jdbc:postgresql://localhost:5432/lab3
+        </property>
+        <property name="hibernate.connection.username">
+            andy
+        </property>
+        <property name="hibernate.connection.password">
+            andy
+        </property>
+<!--        <property name="hbm2ddl.auto">create</property>-->
+        <property name="hibernate.bytecode.use_reflection_optimizer">false</property>
+        <mapping class="com.example.FormBean" />
+
+    </session-factory>
+</hibernate-configuration>

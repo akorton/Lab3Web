@@ -3,12 +3,45 @@ package com.example;
 import javax.faces.component.UIComponent;
 import javax.faces.component.UIInput;
 import javax.faces.context.FacesContext;
+import javax.persistence.*;
 
+@Entity
+@Table(name="results")
 public class FormBean {
+    @Id
+    @GeneratedValue
+    @Column(name="id")
+    private int id;
+
+    @Column(name="x")
     private double x;
+
+    @Column(name="y")
     private double y;
+    @Column(name="r")
     private double r;
-    private boolean result;
+    @Column(name="result")
+    private Boolean result;
+
+    public FormBean(){
+
+    }
+
+    public Boolean getResult() {
+        return result;
+    }
+
+    public void setResult(Boolean result) {
+        this.result = result;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getId() {
+        return id;
+    }
 
     public void setX(double x) {
         this.x = x;
@@ -88,6 +121,7 @@ public class FormBean {
 
     public void submit(){
         this.result = check(x, y, r);
+        HibernateUtils.addFormBean(this);
         System.out.println(x + " " + y + " " + r + " " + result);
     }
 }
