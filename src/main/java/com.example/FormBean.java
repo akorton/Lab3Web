@@ -1,5 +1,9 @@
 package com.example;
 
+import javax.faces.component.UIComponent;
+import javax.faces.component.UIInput;
+import javax.faces.context.FacesContext;
+
 public class FormBean {
     private double x;
     private double y;
@@ -28,6 +32,42 @@ public class FormBean {
 
     public double getY() {
         return y;
+    }
+
+    public void validateY(FacesContext context, UIComponent comp,
+                          Object value){
+        double cur;
+        try{
+            cur = Double.parseDouble(value.toString());
+        } catch (NumberFormatException e){
+            ((UIInput) comp).setValid(false);
+            return;
+        }
+        ((UIInput) comp).setValid(cur >= -3 && cur <= 3);
+    }
+
+    public void validateX(FacesContext context, UIComponent comp,
+                          Object value){
+        double cur;
+        try{
+            cur = Double.parseDouble(value.toString());
+        } catch (NumberFormatException e){
+            ((UIInput) comp).setValid(false);
+            return;
+        }
+        ((UIInput) comp).setValid(cur >= -5 && cur <= 5);
+    }
+
+    public void validateR(FacesContext context, UIComponent comp,
+                          Object value){
+        double cur;
+        try{
+            cur = Double.parseDouble(value.toString());
+        } catch (NumberFormatException e){
+            ((UIInput) comp).setValid(false);
+            return;
+        }
+        ((UIInput) comp).setValid(cur >= 2 && cur <= 5);
     }
 
     private boolean checkSquare(double x, double y, double r){
