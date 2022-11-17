@@ -33,13 +33,13 @@ $(document).ready(()=>{
       drawQuaterCircle(r);
    };
    let drawRect = (r)=>{
-      ctx.fillRect(origin.x, origin.y, r*steps.x, r*steps.y);
+      ctx.fillRect(origin.x - r*steps.x, origin.y, r*steps.x, r*steps.y);
    };
    let drawTriangle = (r)=>{
       ctx.beginPath();
       ctx.moveTo(origin.x, origin.y);
       ctx.lineTo(origin.x - r*steps.x / 2, origin.y);
-      ctx.lineTo(origin.x, origin.y - r*steps.y / 2);
+      ctx.lineTo(origin.x, origin.y - r*steps.y);
       ctx.closePath();
       ctx.fill();
       ctx.stroke();
@@ -48,7 +48,7 @@ $(document).ready(()=>{
    let drawQuaterCircle = (r)=>{
       ctx.beginPath();
       ctx.moveTo(origin.x, origin.y);
-      ctx.arc(origin.x, origin.y, r*steps.x/2, Math.PI * 3/2, 0);
+      ctx.arc(origin.x, origin.y, r*steps.x/2, 0, Math.PI / 2);
       ctx.fill();
       ctx.stroke();
    };
