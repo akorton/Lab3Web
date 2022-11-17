@@ -1,5 +1,6 @@
 package com.example;
 
+import com.google.gson.Gson;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -30,5 +31,11 @@ public class HibernateUtils {
     public static List<FormBean> getAllResults() {
         Session session = sessionFactory.openSession();
         return session.createCriteria(com.example.FormBean.class).list();
+    }
+
+    public static String getAllResultsJson(){
+        List<FormBean> results = getAllResults();
+        Gson gson = new Gson();
+        return gson.toJson(results);
     }
 }

@@ -25,7 +25,7 @@ form{
     gap: 30px;
 }
 
-table{
+table.results{
     overflow-y:scroll;
     height:500px;
     display:block;

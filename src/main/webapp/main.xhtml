@@ -17,22 +17,24 @@
     </div>
     <div id="content">
         <canvas id="canvas" width="500px" height="500px" />
-        <table align="center" cellpadding="5" cellspacing="10" border="2">
-            <tr>
-                <th>X</th>
-                <th>Y</th>
-                <th>R</th>
-                <th>Result</th>
-            </tr>
-            <ui:repeat var="entity" value="#{tableBean.table}">
+        <h:panelGroup id="result-table" value="#{tableBean.table}">
+            <table align="center" cellpadding="5" cellspacing="10" border="2" class="results">
                 <tr>
-                    <td>#{entity.x}</td>
-                    <td>#{entity.y}</td>
-                    <td>#{entity.r}</td>
-                    <td>#{entity.result}</td>
+                    <th>X</th>
+                    <th>Y</th>
+                    <th>R</th>
+                    <th>Result</th>
                 </tr>
-            </ui:repeat>
-        </table>
+                <ui:repeat var="entity" value="#{tableBean.table}">
+                    <tr>
+                        <td>#{entity.x}</td>
+                        <td>#{entity.y}</td>
+                        <td>#{entity.r}</td>
+                        <td>#{entity.result}</td>
+                    </tr>
+                </ui:repeat>
+            </table>
+        </h:panelGroup>
     </div>
     <h:form>
         <div id="selection">
@@ -46,7 +48,7 @@
             <div>
                 <h2>Input Y</h2>
                 <h:panelGrid columns="1">
-                    <p:inputText id="select-y" value="#{formBean.y}" class="select-y" validator="#{formBean.validateY}"/>
+                    <p:inputText id="select-y" value="#{formBean.y}" class="select-y" validator="#{formBean.validateY}" maxlength="5"/>
                 </h:panelGrid>
             </div>
             <div>
@@ -58,9 +60,10 @@
             </div>
         </div>
         <h:commandButton value="Submit" action="#{formBean.submit}">
-            <f:ajax execute="@form" />
+            <f:ajax execute="@form" render="results-table serialized-results"/>
         </h:commandButton>
     </h:form>
+    <h:outputText value="#{tableBean.serializedTable}" style="visibility: hidden" id="serialized-results" class="serialized-results"/>
 </h:body>
 <script src="resources/js/main.js" type="text/javascript"/>
 </html>

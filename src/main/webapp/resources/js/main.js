@@ -18,7 +18,9 @@ $(document).ready(()=>{
    const inputY = $(".select-y").first();
    const inputR = $(".select-r input").first();
    const submitBtn = $("input[type=submit]").first();
-   let points = [];
+   const form = $("form").first();
+   console.log(form);
+   let points = JSON.parse($(".serialized-results").first()[0].firstChild.data);
 
    $(".select-x input").first().on("input change", (e)=>{
       x = +e.target.value;
@@ -26,7 +28,7 @@ $(document).ready(()=>{
       drawPoints();
    });
 
-   inputR.on("input change", (e)=>{
+   inputR.on("input change", async (e)=>{
       const cur = +e.target.value;
       if (!isNaN(cur) && cur >= 2 && cur <= 5) r = cur;
       else {
@@ -52,7 +54,6 @@ $(document).ready(()=>{
    canvas.addEventListener("click", (e)=>{
       let oldX = x;
       let oldY = y;
-      console.log(oldX, oldY);
       let coords = getCoords(e.offsetX, e.offsetY);
       inputX[0].value = coords[0];
       inputY[0].value = coords[1];
@@ -114,37 +115,14 @@ $(document).ready(()=>{
    let drawPoints = ()=>{
       draw(r);
       for (let point of points){
-         drawPoint(point.x, point.y, point.in);
+         drawPoint(point.x, point.y, point.result);
       }
       drawPoint(x, y, false);
       ctx.beginPath();
    };
-
-   let addToTable = ()=>{
-      const table = $('tbody')[0];
-      for (const child of [...table.children].slice(1)){
-         table.removeChild(child);
-      }
-      for (const point of points){
-         let x = point.x;
-         let y = point.y;
-         let r = point.r;
-         let check = point.in;
-         let tr = document.createElement("tr");
-         let tdX = document.createElement("td");
-         tdX.innerText = x;
-         let tdY = document.createElement("td");
-         tdY.innerText = y;
-         let tdR = document.createElement("td");
-         tdR.innerText = r;
-         let tdCheck = document.createElement("td");
-         tdCheck.innerText = check;
-         tr.appendChild(tdX);
-         tr.appendChild(tdY);
-         tr.appendChild(tdR);
-         tr.appendChild(tdCheck);
-         table.appendChild(tr);
-      }
-   }
    drawPoints();
+   setInterval(()=>{
+      points = JSON.parse($(".serialized-results").first()[0].firstChild.data);
+      drawPoints();
+   }, 2000);
 });
