@@ -23,6 +23,11 @@
       <artifactId>jsf-api</artifactId>
       <version>2.2.20</version><!-- because jsf 2.3+ sucks -->
     </dependency>
+    <dependency>
+      <groupId>org.primefaces</groupId>
+      <artifactId>primefaces</artifactId>
+      <version>7.0</version>
+    </dependency>
   </dependencies>
   <build>
     <finalName>demo</finalName>
