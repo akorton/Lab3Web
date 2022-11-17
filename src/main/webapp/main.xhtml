@@ -60,7 +60,7 @@
             </div>
         </div>
         <h:commandButton value="Submit" action="#{formBean.submit}">
-            <f:ajax execute="@form" render="results-table serialized-results"/>
+            <f:ajax execute="@form" render="result-table serialized-results"/>
         </h:commandButton>
     </h:form>
     <h:outputText value="#{tableBean.serializedTable}" style="visibility: hidden" id="serialized-results" class="serialized-results"/>
