@@ -2,18 +2,21 @@ package com.example;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import java.time.LocalDateTime;
+import java.util.Date;
 
 @ManagedBean(name="hello")
 @RequestScoped
 public class Hello {
 
-    private String name;
+    private Date date;
 
-    public void setName(String name) {
-        this.name = name;
+    public void setDate(Date date) {
+        this.date = date;
     }
 
-    public String getName() {
-        return name;
+    public Date getDate() {
+        date = new Date();
+        return date;
     }
 }

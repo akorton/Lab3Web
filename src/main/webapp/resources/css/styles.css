@@ -1,0 +1,13 @@
+#header{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 24px;
+    gap: 5px;
+    margin-bottom: 10px;
+}
+
+#date{
+    display: flex;
+    justify-content: center;
+}
