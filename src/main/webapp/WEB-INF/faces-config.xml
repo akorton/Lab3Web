@@ -18,6 +18,11 @@
         <managed-bean-class>com.example.FormBean</managed-bean-class>
         <managed-bean-scope>request</managed-bean-scope>
     </managed-bean>
+    <managed-bean>
+        <managed-bean-name>tableBean</managed-bean-name>
+        <managed-bean-class>com.example.TableBean</managed-bean-class>
+        <managed-bean-scope>application</managed-bean-scope>
+    </managed-bean>
     <navigation-rule>
         <from-view-id>/index.xhtml</from-view-id>
         <navigation-case>
