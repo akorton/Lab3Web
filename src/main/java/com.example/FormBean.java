@@ -83,7 +83,7 @@ public class FormBean {
     }
 
     private boolean check(double x, double y, double r){
-        return checkSquare(x, y, r) && checkQuarterCircle(x, y, r) && checkTriangle(x, y, r);
+        return checkSquare(x, y, r) || checkQuarterCircle(x, y, r) || checkTriangle(x, y, r);
     }
 
     public void submit(){

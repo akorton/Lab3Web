@@ -6,20 +6,21 @@ $(document).ready(()=>{
    canvas.width = width;
    canvas.height = height;
    const maxCoord = 5;
-   const offsetX = 10;
-   const offsetY = 10;
+   const offsetX = 0;
+   const offsetY = 0;
    const pointSize = 5;
    const steps = {'x': (width - offsetX) / (2*maxCoord), 'y': (height - offsetY) / (2*maxCoord)};
    const origin = {'x': offsetX / 2 + maxCoord * steps['x'], 'y': offsetY / 2 + maxCoord * steps['y']};
    let x = 0;
    let y = 0;
    let r = 2;
-   const inputX = $(".select-x input").first();
+   const inputX = $(".select-x input[type=hidden]").first();
    const inputY = $(".select-y").first();
    const inputR = $(".select-r input").first();
+   const submitBtn = $("input[type=submit]").first();
    let points = [];
 
-   inputX.on("input change", (e)=>{
+   $(".select-x input").first().on("input change", (e)=>{
       x = +e.target.value;
       if (isNaN(x)) x = 0;
       drawPoints();
@@ -46,7 +47,24 @@ $(document).ready(()=>{
          y = cur;
       }
       drawPoints();
-   })
+   });
+
+   canvas.addEventListener("click", (e)=>{
+      let oldX = x;
+      let oldY = y;
+      console.log(oldX, oldY);
+      let coords = getCoords(e.offsetX, e.offsetY);
+      inputX[0].value = coords[0];
+      inputY[0].value = coords[1];
+      submitBtn.click();
+      inputY[0].value = oldY;
+      inputX[0].value = oldX;
+      drawPoints();
+   });
+
+   const getCoords = (x, y)=>{
+      return [(x - origin.x) / steps.x, -(y - origin.y) / steps.y]
+   };
 
    let setUp = ()=>{
       ctx.moveTo(origin.x - steps.x * maxCoord, origin.y);
