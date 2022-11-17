@@ -6,16 +6,18 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
-<head>
+<h:head>
     <h:outputStylesheet library="css" name="main.css" />
-</head>
+</h:head>
 <h:body>
     <div id="link">
         <h:form>
             <h:commandLink action="#{navigation.toHelloPage}" value="To home Page"/>
         </h:form>
     </div>
-    <canvas id="canvas" width="500px" height="500px"></canvas>
+    <div id="content">
+        <canvas id="canvas" width="500px" height="500px"></canvas>
+    </div>
 </h:body>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript" />
 <script src="resources/js/main.js" type="text/javascript"/>
