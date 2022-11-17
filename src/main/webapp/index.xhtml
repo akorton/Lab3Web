@@ -7,15 +7,23 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <h:head>
     <h:outputStylesheet library="css" name="styles.css" />
+    <h:outputScript library="js" name="script.js" />
 </h:head>
 <h:body>
     <div id="header">
         <div>Кортыш Андрeй</div>
         <div>P32151</div>
-        <div>15910</div>
+        <div>Вариант 15910</div>
     </div>
-    <h:outputText value="#{hello.date}" id="time">
-        <f:convertDateTime dateStyle="medium" timeStyle="medium" type="both"/>
-    </h:outputText>
+    <div id="time">
+        <h:form>
+            <h:outputText value="#{hello.date}" id="datetime">
+                <f:convertDateTime dateStyle="medium" timeStyle="medium" type="both"/>
+            </h:outputText>
+            <h:commandButton id="update-btn">
+                <f:ajax render="datetime"/>
+            </h:commandButton>
+        </h:form>
+    </div>
 </h:body>
 </html>
