@@ -35,7 +35,7 @@
         <div>
             <h2>Input R</h2>
             <h:panelGrid columns="1">
-                <p:inputText id="select-r" value="#{formBean.r}" class="select-r" maxlength="5"/>
+                <p:inputNumber id="select-r" value="#{formBean.r}" class="select-r" maxlength="5" minValue="2" maxValue="5"/>
                 <p:slider for="select-r" minValue="2" maxValue="5" step="0.25" class="r-slider"/>
             </h:panelGrid>
         </div>

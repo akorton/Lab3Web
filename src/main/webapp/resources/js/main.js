@@ -16,26 +16,24 @@ $(document).ready(()=>{
    let r = 2;
    const inputX = $(".select-x input").first();
    const inputY = $("#select-y");
-   const inputR = $("input.select-r").first();
-   inputR[0].value = r;
+   const inputR = $(".select-r input").first();
    let points = [];
 
-   inputX.on("input", (e)=>{
+   inputX.on("input change", (e)=>{
       x = +e.target.value;
       if (isNaN(x)) x = 0;
       drawPoints();
    });
 
-   inputR.on("input", (e)=>{
+   inputR.on("input change", (e)=>{
       const cur = +e.target.value;
-      if (isNaN(cur) || cur < 2 || cur > 5 || e.target.value.length > 5){
-         e.target.value = r;
-         $(".r-slider").first().slider("value", r);
-      } else{
-         r = cur;
+      if (!isNaN(cur) && cur >= 2 && cur <= 5) r = cur;
+      else {
+         inputR[0].value = r;
+         $(".r-slider").slider("value", r);
       }
       drawPoints();
-   })
+   });
 
    let setUp = ()=>{
       ctx.moveTo(origin.x - steps.x * maxCoord, origin.y);
