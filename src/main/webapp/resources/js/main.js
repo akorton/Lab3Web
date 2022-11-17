@@ -1,5 +1,5 @@
 $(document).ready(()=>{
-   const canvas = document.getElementById("canvas");
+   const canvas = $("#canvas")[0];
    const ctx = canvas.getContext('2d');
    const width = canvas.clientWidth;
    const height = canvas.clientHeight;
@@ -13,8 +13,29 @@ $(document).ready(()=>{
    const origin = {'x': offsetX / 2 + maxCoord * steps['x'], 'y': offsetY / 2 + maxCoord * steps['y']};
    let x = 0;
    let y = 0;
-   let r = 1;
+   let r = 2;
+   const inputX = $(".select-x input").first();
+   const inputY = $("#select-y");
+   const inputR = $("input.select-r").first();
+   inputR[0].value = r;
    let points = [];
+
+   inputX.on("input", (e)=>{
+      x = +e.target.value;
+      if (isNaN(x)) x = 0;
+      drawPoints();
+   });
+
+   inputR.on("input", (e)=>{
+      const cur = +e.target.value;
+      if (isNaN(cur) || cur < 2 || cur > 5 || e.target.value.length > 5){
+         e.target.value = r;
+         $(".r-slider").first().slider("value", r);
+      } else{
+         r = cur;
+      }
+      drawPoints();
+   })
 
    let setUp = ()=>{
       ctx.moveTo(origin.x - steps.x * maxCoord, origin.y);
