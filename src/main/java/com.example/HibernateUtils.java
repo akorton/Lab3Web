@@ -7,13 +7,15 @@ import org.hibernate.Transaction;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 
-import javax.persistence.criteria.CriteriaBuilder;
-import java.util.LinkedList;
+
 import java.util.List;
 
 public class HibernateUtils {
     static {
         Configuration configuration = new Configuration().configure();
+        configuration.setProperty("hibernate.connection.username", System.getenv("username"));
+        configuration.setProperty("hibernate.connection.password", System.getenv("password"));
+        configuration.setProperty("hibernate.connection.url", "jdbc:postgresql://localhost:5432/%s".formatted(System.getenv("database")));
         StandardServiceRegistryBuilder registryBuilder = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties());
         sessionFactory = configuration.buildSessionFactory(registryBuilder.build());
     }
